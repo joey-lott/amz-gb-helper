@@ -97,7 +97,7 @@ Route::get('/asin/{id}/lowest-offers', function ($id) {
 });
 
 Route::get('/phpinfo', function () {
-  echo phpinfo();
+  //echo phpinfo();
 });
 
 Route::get('/hijackers/input', function () {
