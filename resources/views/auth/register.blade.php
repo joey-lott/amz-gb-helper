@@ -62,6 +62,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="signuppassword" class="col-md-4 control-label">Registration Password</label>
+
+                            <div class="col-md-6">
+                                <input id="signuppassword" type="password" class="form-control" name="signuppassword" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
