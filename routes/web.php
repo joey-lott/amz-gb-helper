@@ -23,7 +23,7 @@ Route::get('/', function () {
   echo "<a href='/request-report'>request report</a><br>";
   echo "<a href='/list-requested-reports'>list requested reports</a><br>";
   echo "<a href='/list-reports'>list reports</a><br>";
-});
+})->middleware("auth");
 
 
 Route::get('/request-report', function () {
@@ -31,14 +31,14 @@ Route::get('/request-report', function () {
   $arl->setReportType("_GET_MERCHANT_LISTINGS_ALL_DATA_");
   $r = $arl->requestReport();
   dd($r->response);
-});
+})->middleware("auth");
 
 Route::get('/list-requested-reports', function () {
   $arl = new AmazonReportRequestList("realpeoplegoods");
   $arl->setReportTypes("_GET_MERCHANT_LISTINGS_ALL_DATA_");
   $list = $arl->fetchRequestList();
   dd($arl->getList());
-});
+})->middleware("auth");
 
 Route::get('/list-reports', function () {
   $arl = new AmazonReportList("realpeoplegoods");
@@ -49,7 +49,7 @@ Route::get('/list-reports', function () {
 //    dd($report);
     echo "<a href='list-reports/".$report["ReportId"]."'>".$report["ReportId"]."</a><br>";
   }
-});
+})->middleware("auth");
 
 Route::get('/list-reports/{id}', function ($id) {
   $arl = new AmazonReport("realpeoplegoods");
@@ -72,7 +72,7 @@ Route::get('/list-reports/{id}', function ($id) {
 
   RunTestForOffersOnListings::dispatch(auth()->user()->id);
   echo "job dispatched";
-});
+})->middleware("auth");
 
 Route::get('/asin/{id}/lowest-offers', function ($id) {
   $arl = new AmazonProductInfo("realpeoplegoods");
@@ -94,7 +94,7 @@ Route::get('/asin/{id}/lowest-offers', function ($id) {
   //}
 //  dd($reader);
 
-});
+})->middleware("auth");
 
 Route::get('/phpinfo', function () {
   //echo phpinfo();
@@ -102,7 +102,7 @@ Route::get('/phpinfo', function () {
 
 Route::get('/hijackers/input', function () {
   return view("hijackers.input");
-});
+})->middleware("auth");
 Route::post('/hijackers/input', "HijackersController@submit");
 
 Auth::routes();
